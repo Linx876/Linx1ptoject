@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg">
+    <script src="https://use.fontawesome.com/aa673b33b8.js"></script>
+    <title>Tul'kin Andrey - frontend developer</title>
+    <script type="text/javascript">
+      function clockPainting() {
+        var now = new Date();
+        var sec = now.getSeconds();
+        var min = now.getMinutes();
+        var hr = now.getHours();
+
+        var ctx = document.getElementById("canvas").getContext("2d");
+        ctx.save();
+
+        ctx.clearRect(0, 0, 150, 150);
+        ctx.translate(75, 75);
+        ctx.scale(0.4, 0.4);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "black";
+        ctx.lineWidth = 8;
+        ctx.lineCap = "round";
+
+        ctx.save();
+        ctx.beginPath();
+
+        for (var i = 0; i < 12; i++) {
+          ctx.rotate(Math.PI / 6);
+          ctx.moveTo(100, 0);
+          ctx.lineTo(120, 0);
+        }
+
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+
+        ctx.rotate((Math.PI / 6) * hr +
+          (Math.PI / 360) * min +
+          (Math.PI / 21600) * sec);
+        ctx.lineWidth = 14;
+
+        ctx.beginPath();
+        ctx.moveTo(-20, 0);
+
+
+        ctx.lineTo(80, 0);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+
+        // минутная стрелка
+        ctx.rotate((Math.PI / 30 * min) +
+          (Math.PI / 1800) * sec);
+        ctx.lineWidth = 10;
+
+        ctx.beginPath();
+        ctx.moveTo(-28, 0);
+        ctx.lineTo(112, 0);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+
+        // секундная стрелка
+        ctx.rotate(sec * Math.PI / 30);
+        ctx.strokeStyle = "#D40000";// цвет контура
+        ctx.fillStyle = "#D40000";
+        ctx.lineWidth = 6;
+
+        ctx.beginPath();
+        ctx.moveTo(-30, 0);
+        ctx.lineTo(83, 0);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.restore();
+      }
+
+      window.onload = function () {
+        setInterval(clockPainting, 1000);// функция, перерисовывающая часы
+        //через равные промежутки времени
+      }
+    </script>
+
+    <h1></h1>
+    <p></p>
+    <canvas id="canvas" height="150" width="150"></canvas>
+</head>
+<body>
+<header>
+    <h1>Tul'kin Andrey</h1>
+    <h3>Frontend developer</h3>
+    <section class="container">
+        <article>
+            <div class="contacts">
+                <h4>Contacts:</h4>
+                <ul>
+                    <li><i class="fa fa-envelope"></i> Email: <a target="_blank" href="mailto:andreytul2002@mail.ru">andreytul2002@mail.ru</a>
+                    </li>
+                </ul>
+                <form>
+                    <label for="name">Your name:</label>
+                    <input type="text" name="name" id="name">
+                    <br><br>
+                    <label for="feedback">Your feedback:</label>
+                    <input type="text" name="feedback" id="feedback">
+                    <br><br>
+                    <label for="captcha">how much is 2 + 2 * 2:</label>
+                    <input type="text" name="captcha" id="captcha">
+                    <br><br>
+                    <input type="submit" id="feedback_submit">
+                </form>
+                <script defer>
+                  let captchaElem = document.querySelector("#captcha");
+                  let feedbackSubmitBtn = document.querySelector("#feedback_submit");
+
+                  feedbackSubmitBtn.addEventListener("click", e => {
+                    event.preventDefault();
+                    if (captchaElem.value != 6) {
+                      alert("captcha is incorrect")
+                    } else {
+                      alert("Good! Thank you for your feedback!");
+                    }
+                  })
+                </script>
+            </div>
+            <div class="location">
+                <h4>Current location:</h4>
+                <p>Nizhny Novgorod</p>
+            </div>
+        </article>
+        <article>
+            <img src="img/profile.jpg" alt="photo">
+        </article>
+    </section>
+</header>
+<main>
+    <section class="sk_exp">
+        <article class="container">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>Responsive web design</li>
+                <li>JavaScript, TypeScript</li>
+
+                <li>Python Parsing (BeautifulSoup4)</li>
+
+            </ul>
+        </article>
+        <article class="container">
+            <h2>Projects</h2>
+            <h4>websites</h4>
+        </article>
+    </section>
+    <section class="education">
+        <article class="container">
+            <h2>Education</h2>
+            <ul>
+                <li>
+                    <small>2020-Present</small> <br>
+                    Nizhny Novgorod State University <br>
+                    <small>Specialist, Information Security</small>
+                </li>
+
+            </ul>
+        </article>
+    </section>
+</main>
+<footer>
+    <section class="container">
+        <article>
+            <b>Tul'kin Andrey</b>
+            <br>
+            <small>© All rights reserved</small>
+        </article>
+        <article>
+
+            <a target="_blank" href="mailto:andreytul2002@mail.ru"><i class="fa fa-envelope"></i></a>
+
+        </article>
+    </section>
+</footer>
+</body>
+</html>
